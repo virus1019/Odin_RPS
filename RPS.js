@@ -1,3 +1,12 @@
+const btn = document.querySelectorAll('.btn');
+const rockBtn = document.querySelector('#rock');
+const paperBtn = document.querySelector('#paper');
+const scisBtn = document.querySelector('#scissors');
+rockBtn.onclick = () => playerSelection = 'rock';
+paperBtn.onclick = () => playerSelection = 'paper';
+scisBtn.onclick = () => playerSelection = 'scissors';
+btn.forEach(btn => btn.addEventListener('click', playRound));
+
 function getComputerChoice (){
     randomRPS = Math.floor(Math.random() * 3);
     if (randomRPS == 0){
@@ -75,6 +84,10 @@ function inputGameNumber(){
     }
 }
 
+function playRound(){
+    computerChoice = getComputerChoice()
+    winner = checkWinner(playerSelection, computerChoice)
+}
 
 function playGame(){
     let playerScore = 0; 
@@ -84,8 +97,8 @@ function playGame(){
     for (i = 0; i < inputNumber; i++){
         computerChoice = getComputerChoice()
         playerSelection = getPlayerChoice()
-
         winner = checkWinner(playerSelection, computerChoice)
+
         if (winner == true) {
             playerScore++;
         }
@@ -99,6 +112,3 @@ function playGame(){
         }
     }
 }
-
-
-playGame();
