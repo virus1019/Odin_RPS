@@ -7,6 +7,11 @@ paperBtn.onclick = () => playerSelection = 'paper';
 scisBtn.onclick = () => playerSelection = 'scissors';
 btn.forEach(btn => btn.addEventListener('click', playRound));
 
+//
+
+let result = document.getElementById("result").textContent;
+
+
 function getComputerChoice (){
     randomRPS = Math.floor(Math.random() * 3);
     if (randomRPS == 0){
@@ -22,47 +27,39 @@ function getComputerChoice (){
 }
 
 
-function getPlayerChoice(){
-    while(invalidInput = true)
-    { 
-        input = prompt("Rock, Paper, or Scissors?");
-        playerSelection  = input.toLowerCase();
-        
-        if (playerSelection  === 'rock' || playerSelection  === 'paper' || playerSelection  === 'scissors')
-        {
-            invalidInput = false;
-            return playerSelection;
-        }
-    }
-}
-
-
 function checkWinner(playerSelection, computerSelection) {
     if (playerSelection === computerSelection){
-        console.log(`Tie Game! You played ${playerSelection}, computer played ${computerSelection}`)
+        result = `Tie Game! You played ${playerSelection}, computer played ${computerSelection}`
+        document.getElementById("result").textContent = result;
     }
     else if (playerSelection === 'rock' && computerSelection === 'scissors'){
-        console.log(`You win! You played ${playerSelection}, computer played ${computerSelection}`)
+        result = `You win! You played ${playerSelection}, computer played ${computerSelection}`
+        document.getElementById("result").textContent = result;
         winner = true; return winner;
     }
     else if (playerSelection === 'rock' && computerSelection === 'paper'){
-        console.log(`You lose! You played ${playerSelection}, computer played ${computerSelection}`)
+        result = `You lose! You played ${playerSelection}, computer played ${computerSelection}`
+        document.getElementById("result").textContent = result;
         winner = false; return winner;
     }
     else if (playerSelection === 'paper' && computerSelection === 'scissors'){
-        console.log(`You lose! You played ${playerSelection}, computer played ${computerSelection}`)
+        result = `You lose! You played ${playerSelection}, computer played ${computerSelection}`
+        document.getElementById("result").textContent = result;
         winner = false; return winner;
     }
     else if (playerSelection === 'paper' && computerSelection === 'rock'){
-        console.log(`You win! You played ${playerSelection}, computer played ${computerSelection}`)
+        result = `You win! You played ${playerSelection}, computer played ${computerSelection}`
+        document.getElementById("result").textContent = result;
         winner = true; return winner;
     }
     else if (playerSelection === 'scissors' && computerSelection === 'rock'){
-        console.log(`You lose! You played ${playerSelection}, computer played ${computerSelection}`)
+        result = `You lose! You played ${playerSelection}, computer played ${computerSelection}`
+        document.getElementById("result").textContent = result;
         winner = true; return winner;
     }
     else if (playerSelection === 'scissors' && computerSelection === 'paper'){
-        console.log(`You win! You played ${playerSelection}, computer played ${computerSelection}`)
+        result = `You win! You played ${playerSelection}, computer played ${computerSelection}`
+        document.getElementById("result").textContent = result;
         winner = false; return winner;
     }
 }
@@ -96,7 +93,7 @@ function playGame(){
     
     for (i = 0; i < inputNumber; i++){
         computerChoice = getComputerChoice()
-        playerSelection = getPlayerChoice()
+        //playerSelection = getPlayerChoice() - unnecessary since button click does this now
         winner = checkWinner(playerSelection, computerChoice)
 
         if (winner == true) {
@@ -112,3 +109,32 @@ function playGame(){
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//function no longer needed as no longer text input; button input instead
+/*
+function getPlayerChoice(){
+    while(invalidInput = true)
+    { 
+        input = prompt("Rock, Paper, or Scissors?");
+        playerSelection  = input.toLowerCase();
+        
+        if (playerSelection  === 'rock' || playerSelection  === 'paper' || playerSelection  === 'scissors')
+        {
+            invalidInput = false;
+            return playerSelection;
+        }
+    }
+}*/
