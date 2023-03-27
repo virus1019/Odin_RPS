@@ -65,6 +65,91 @@ function checkWinner(playerSelection, computerSelection) {
 }
 
 
+
+
+function getPlayerScore() {
+    let playerText = document.getElementById("playerScore").innerText;
+    let playerScoreArray = playerText.split(" ");
+    let playerScoreString = playerScoreArray[playerScoreArray.length - 1]
+    let playerScore = parseInt(playerScoreString);
+    return playerScore;
+}
+
+function getComputerScore() {
+    let computerText = document.getElementById("cpuScore").innerText;
+    let computerScoreArray = computerText.split(" ");
+    let computerScoreString = computerScoreArray[computerScoreArray.length - 1]
+    let computerScore = parseInt(computerScoreString);
+    return computerScore; //returns an int
+}
+
+function updateScore(winner){
+    let pScore = getPlayerScore();
+    let cScore = getComputerScore();
+    
+    if (winner === true){
+        pScore++;
+        console.log(pScore);
+    }
+    else if (winner === false){
+        cScore++;
+    }
+    const playerScore = document.querySelector('#playerScore');
+    const cpuScore = document.querySelector('#cpuScore');
+    playerScore.textContent = `Player Score: ${pScore}`;
+    cpuScore.textContent = `Computer Score: ${cScore}`;
+    
+    if (pScore === 5){
+        const finalScore = document.querySelector('#finalScore');
+        finalScore.textContent = `You are the winner!`
+    }
+    if (cScore === 5){
+        const finalScore = document.querySelector('#finalScore');
+        finalScore.textContent = `The computer is the winner!`
+    }
+}
+
+function playRound(){
+    computerChoice = getComputerChoice();
+    winner = checkWinner(playerSelection, computerChoice);
+    updateScore(winner);
+}
+
+/*
+function playGame(){
+    let playerScore = 0; 
+    let computerScore = 0;
+    let inputNumber = 5;
+    
+    for (i = 0; i < inputNumber; i++){
+        computerChoice = getComputerChoice()
+        winner = checkWinner(playerSelection, computerChoice)
+
+        if (winner == true) {
+            playerScore++;
+            document.getElementById("playerScore").textContent = playerScore;
+        }
+        else if (winner == false) {
+            computerScore++;
+            document.getElementById("cpuScore").textContent = computerScore;
+        }
+        if (i == (inputNumber - 1)){
+            if (playerScore === computerScore){console.log(`Tie Game! Your Score ${playerScore}, Computer Score: ${computerScore}`)}
+            else if(playerScore > computerScore ){console.log(`You Win! Your Score ${playerScore}, Computer Score: ${computerScore}`)}
+            else if(playerScore < computerScore ){console.log(`You Lose! Your Score ${playerScore}, Computer Score: ${computerScore}`)}
+        }
+    }
+}
+*/
+
+
+
+
+
+
+
+
+/* No longer necessary since we're setting it to 5 games
 function inputGameNumber(){
     let invalidInput = true;
     while(invalidInput = true)
@@ -80,45 +165,7 @@ function inputGameNumber(){
         }
     }
 }
-
-function playRound(){
-    computerChoice = getComputerChoice()
-    winner = checkWinner(playerSelection, computerChoice)
-}
-
-function playGame(){
-    let playerScore = 0; 
-    let computerScore = 0;
-    inputNumber = inputGameNumber();
-    
-    for (i = 0; i < inputNumber; i++){
-        computerChoice = getComputerChoice()
-        //playerSelection = getPlayerChoice() - unnecessary since button click does this now
-        winner = checkWinner(playerSelection, computerChoice)
-
-        if (winner == true) {
-            playerScore++;
-        }
-        else if (winner == false) {
-            computerScore++;
-        }
-        if (i == (inputNumber - 1)){
-            if (playerScore === computerScore){console.log(`Tie Game! Your Score ${playerScore}, Computer Score: ${computerScore}`)}
-            else if(playerScore > computerScore ){console.log(`You Win! Your Score ${playerScore}, Computer Score: ${computerScore}`)}
-            else if(playerScore < computerScore ){console.log(`You Lose! Your Score ${playerScore}, Computer Score: ${computerScore}`)}
-        }
-    }
-}
-
-
-
-
-
-
-
-
-
-
+*/
 
 
 
